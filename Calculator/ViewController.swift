@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     var previousNum:Double = 0.0; // the previous number in the equation
     var displayNum:Double = 0.0; // the number that needs to be calculated (not a string so we can do calculations)
     var doMath = false;
+    var operation = 0; //operation variable
     @IBOutlet weak var label: UILabel! // the number that will be displayed on the screen
     
     // function that will create the number the user wants to use in calculations
@@ -20,12 +21,14 @@ class ViewController: UIViewController {
         if doMath == true{
             label.text = String(sender.tag)
             displayNum = Double(label.text!)!
-            doMath = true;
+            doMath = false;
             
         }
+        else{
         
         label.text = label.text! + String(sender.tag)
         displayNum = Double(label.text!)!
+        }
     }
     
     // function for the other buttons that help execute the calculations/delete/cancel
@@ -39,14 +42,18 @@ class ViewController: UIViewController {
             }
             
             else if sender.tag == 16 { // minus
+                label.text = "-";
             }
             
             else if sender.tag == 17  { // multiply
+                label.text = "*";
             }
-            else if sender.tag == 18  { //divide
                 
+            else if sender.tag == 18  { //divide
+                label.text = "/";
             }
             
+            operation = sender.tag //store operation 
             doMath = true; // after a math button is clicked, perform the calculation
         }
         
